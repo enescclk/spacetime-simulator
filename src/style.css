@@ -1,0 +1,845 @@
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+
+    margin: 0;
+    padding: 0;
+
+    overflow: hidden;
+}
+
+
+body {
+    background: #010207;
+
+    color: #f4f7ff;
+
+    font-family:
+        Inter,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+}
+
+
+button,
+input,
+select {
+    font: inherit;
+}
+
+
+button {
+    user-select: none;
+}
+
+
+canvas {
+    position: fixed;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    z-index: 0;
+}
+
+
+/* =========================================================
+   LEFT PANEL CONTAINER
+========================================================= */
+
+.left-panel-container {
+    position: fixed;
+
+    top: 16px;
+    left: 16px;
+
+    z-index: 20;
+
+    width: 250px;
+
+    max-height:
+        calc(100vh - 32px);
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: stretch;
+
+    gap: 10px;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   COMMON PANELS
+========================================================= */
+
+.body-creator,
+.object-list,
+.space-settings,
+.theory-selector {
+    background:
+        rgba(5, 12, 27, 0.94);
+
+    border:
+        1px solid #264c7e;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 10px 35px
+        rgba(0, 0, 0, 0.28);
+
+    backdrop-filter:
+        blur(10px);
+
+    pointer-events: auto;
+}
+
+
+/* =========================================================
+   BODY CREATOR
+========================================================= */
+
+.body-creator {
+    position: relative;
+
+    width: 100%;
+
+    flex-shrink: 0;
+
+    overflow: hidden;
+}
+
+
+.body-panel-content {
+    padding:
+        4px 16px 16px;
+}
+
+
+/* =========================================================
+   OBJECT LIST
+========================================================= */
+
+.object-list {
+    position: relative;
+
+    width: 100%;
+
+    min-height: 44px;
+
+    max-height: 280px;
+
+    flex-shrink: 1;
+
+    overflow: hidden;
+}
+
+
+.object-list-content {
+    max-height: 225px;
+
+    overflow-y: auto;
+}
+
+
+.object-items {
+    padding:
+        4px 8px 8px;
+}
+
+
+.object-item {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    min-height: 48px;
+
+    margin-bottom: 4px;
+
+    border-radius: 6px;
+
+    transition:
+        background 120ms ease;
+}
+
+
+.object-item:last-child {
+    margin-bottom: 0;
+}
+
+
+.object-item:hover {
+    background:
+        rgba(35, 111, 255, 0.1);
+}
+
+
+.object-info {
+    flex: 1;
+
+    min-width: 0;
+
+    padding:
+        7px 8px;
+
+    cursor: pointer;
+}
+
+
+.object-name {
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+
+.object-mass {
+    margin-top: 3px;
+
+    color: #8090a8;
+
+    font-size: 10px;
+}
+
+
+.delete-object {
+    width: 28px;
+    height: 28px;
+
+    flex-shrink: 0;
+
+    margin-right: 5px;
+
+    padding: 0;
+
+    border: 0;
+
+    border-radius: 5px;
+
+    background: transparent;
+
+    color: #7d8ba1;
+
+    font-size: 19px;
+
+    cursor: pointer;
+}
+
+
+.delete-object:hover {
+    color: #ff5c67;
+
+    background:
+        rgba(255, 70, 85, 0.12);
+}
+
+
+.empty-list {
+    padding:
+        14px 10px;
+
+    color: #78879d;
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   PANEL HEADERS
+========================================================= */
+
+.panel-header {
+    min-height: 44px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 10px;
+
+    padding:
+        0 10px 0 16px;
+}
+
+
+.panel-title,
+.compact-title {
+    font-size: 12px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.04em;
+
+    text-transform: uppercase;
+}
+
+
+.panel-toggle {
+    width: 27px;
+    height: 27px;
+
+    flex-shrink: 0;
+
+    padding: 0;
+
+    border: 0;
+
+    border-radius: 5px;
+
+    background: transparent;
+
+    color: #8292a9;
+
+    font-size: 18px;
+
+    cursor: pointer;
+}
+
+
+.panel-toggle:hover {
+    background:
+        rgba(255, 255, 255, 0.07);
+
+    color: white;
+}
+
+
+/* =========================================================
+   BODY CREATOR FORM
+========================================================= */
+
+.body-creator label {
+    display: block;
+
+    margin-bottom: 10px;
+
+    color: #aebbd0;
+
+    font-size: 11px;
+}
+
+
+input,
+select {
+    width: 100%;
+    height: 34px;
+
+    margin-top: 5px;
+
+    padding:
+        0 10px;
+
+    outline: none;
+
+    border:
+        1px solid #273b5a;
+
+    border-radius: 6px;
+
+    background: #091426;
+
+    color: #f4f7ff;
+}
+
+
+input:hover,
+select:hover {
+    border-color: #365176;
+}
+
+
+input:focus,
+select:focus {
+    border-color: #2582ff;
+}
+
+
+input[type="color"] {
+    padding: 4px;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   INPUT UNITS
+========================================================= */
+
+.input-unit-row {
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+}
+
+
+.input-unit-row input {
+    flex: 1;
+
+    min-width: 0;
+}
+
+
+.unit {
+    min-width: 27px;
+
+    color: #55a4ff;
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+
+.unit-info {
+    margin:
+        0 0 11px;
+
+    padding: 8px 9px;
+
+    border:
+        1px solid #163252;
+
+    border-radius: 6px;
+
+    background: #07182b;
+
+    color: #71839d;
+
+    font-size: 9px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   POSITION
+========================================================= */
+
+.position-row {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(0, 1fr);
+
+    gap: 8px;
+}
+
+
+/* =========================================================
+   PRIMARY BUTTON
+========================================================= */
+
+.primary-button {
+    width: 100%;
+    height: 34px;
+
+    border: 0;
+
+    border-radius: 6px;
+
+    background: #1677ff;
+
+    color: white;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 120ms ease,
+        transform 80ms ease;
+}
+
+
+.primary-button:hover {
+    background: #2d86ff;
+}
+
+
+.primary-button:active {
+    transform:
+        translateY(1px);
+}
+
+
+/* =========================================================
+   SPACE SETTINGS
+========================================================= */
+
+.space-settings {
+    position: fixed;
+
+    top: 16px;
+    right: 16px;
+
+    z-index: 20;
+
+    width: 270px;
+
+    padding: 13px;
+}
+
+
+.space-settings .compact-title {
+    margin-bottom: 9px;
+}
+
+
+.space-size-row {
+    display: flex;
+
+    gap: 7px;
+}
+
+
+.space-size-row input {
+    width: 85px;
+
+    margin: 0;
+}
+
+
+.space-size-row button {
+    flex: 1;
+
+    height: 34px;
+
+    padding:
+        0 10px;
+
+    border:
+        1px solid #245fae;
+
+    border-radius: 6px;
+
+    background: #0d3971;
+
+    color: #eaf3ff;
+
+    font-size: 11px;
+
+    cursor: pointer;
+
+    transition:
+        background 120ms ease,
+        border-color 120ms ease;
+}
+
+
+.space-size-row button:hover {
+    background: #124b94;
+
+    border-color: #3385ed;
+}
+
+
+/* =========================================================
+   THEORY SELECTOR
+========================================================= */
+
+.theory-selector {
+    position: fixed;
+
+    top: 112px;
+    right: 16px;
+
+    z-index: 20;
+
+    width: 270px;
+
+    padding: 13px;
+}
+
+
+.theory-selector .compact-title {
+    margin-bottom: 9px;
+}
+
+
+.theory-buttons {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(0, 1fr);
+
+    gap: 6px;
+}
+
+
+.theory-button {
+    min-width: 0;
+
+    min-height: 58px;
+
+    padding:
+        7px 8px;
+
+    border:
+        1px solid #243a58;
+
+    border-radius: 6px;
+
+    background: #091426;
+
+    color: #b9c5d7;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition:
+        border-color 120ms ease,
+        background 120ms ease;
+}
+
+
+.theory-button:hover {
+    border-color: #35639c;
+}
+
+
+.theory-button.active {
+    border-color: #2483ff;
+
+    background:
+        rgba(27, 119, 255, 0.15);
+}
+
+
+.theory-name {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: #f5f8ff;
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+
+.theory-description {
+    display: block;
+
+    color: #71829b;
+
+    font-size: 9px;
+
+    line-height: 1.35;
+}
+
+
+/* =========================================================
+   LANGUAGE SELECTOR
+========================================================= */
+
+.language-selector {
+    position: fixed;
+
+    right: 16px;
+    bottom: 16px;
+
+    z-index: 30;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+
+.language-current,
+.language-option {
+    width: 43px;
+    height: 34px;
+
+    padding: 0;
+
+    border:
+        1px solid #2b4568;
+
+    border-radius: 7px;
+
+    background:
+        rgba(5, 12, 27, 0.95);
+
+    color: #e7effb;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    backdrop-filter:
+        blur(10px);
+
+    transition:
+        border-color 120ms ease,
+        background 120ms ease;
+}
+
+
+.language-current:hover,
+.language-option:hover {
+    border-color: #2582ff;
+
+    background: #0b1e39;
+}
+
+
+.language-option {
+    animation:
+        language-pop
+        100ms ease-out;
+}
+
+
+@keyframes language-pop {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(4px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+/* =========================================================
+   SCROLLBARS
+========================================================= */
+
+.body-panel-content::-webkit-scrollbar,
+.object-list-content::-webkit-scrollbar {
+    width: 5px;
+}
+
+
+.body-panel-content::-webkit-scrollbar-track,
+.object-list-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+
+.body-panel-content::-webkit-scrollbar-thumb,
+.object-list-content::-webkit-scrollbar-thumb {
+    background: #263c5d;
+
+    border-radius: 10px;
+}
+
+
+.body-panel-content::-webkit-scrollbar-thumb:hover,
+.object-list-content::-webkit-scrollbar-thumb:hover {
+    background: #36537c;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .left-panel-container {
+        top: 8px;
+        left: 8px;
+
+        width: 220px;
+
+        max-height:
+            calc(100vh - 16px);
+
+        gap: 8px;
+    }
+
+
+    .body-panel-content {
+        max-height:
+            calc(100vh - 250px);
+
+        overflow-y: auto;
+    }
+
+
+    .object-list {
+        max-height: 220px;
+    }
+
+
+    .object-list-content {
+        max-height: 165px;
+    }
+
+
+    .space-settings,
+    .theory-selector {
+        right: 8px;
+
+        width: 220px;
+    }
+
+
+    .space-settings {
+        top: 8px;
+    }
+
+
+    .theory-selector {
+        top: 104px;
+    }
+
+
+    .language-selector {
+        right: 8px;
+        bottom: 8px;
+    }
+}
